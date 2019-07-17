@@ -40,6 +40,7 @@ curl -H "Content-Type:application/json" -X POST --data '{ "user_id":6, "token":"
 
 
 # 本项目也可以拿来学习sh脚本
+# 作者QQ：1342088190
 
 
 
