@@ -1,0 +1,20 @@
+#!/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+cmd="ab -c 450 -n 450 http://abc.yimii.me:83/index.php/Hello/index ;"
+
+date +%s.%N
+exec_cmd=''
+for((i=0;i<50;i++))
+do
+{
+	exec_cmd=${exec_cmd}${cmd}	
+}
+done
+
+echo "\n"
+date +%s.%N
+eval $exec_cmd
+echo "\n"
+date +%s.%N

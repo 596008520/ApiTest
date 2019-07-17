@@ -1,0 +1,44 @@
+#!/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+# 请求地址前缀
+host='127.0.0.1:8015/api'
+# 结果输出文件 
+put_out='/home/wwwroot/elabel/back/public/error.html'
+
+# 控制器参数
+OLD_IFS="$IFS" 
+IFS="_" 
+arr=($1) 
+IFS="$OLD_IFS" 
+
+controller=${arr[0]}
+action=${arr[1]}
+
+# curl命令头
+cmd_head='curl -H "Content-Type:application/json" -X POST --data '
+
+# 加载json参数
+json_file=./${controller}_${action}
+json=$(cat ${json_file})
+
+# 完整的请求地址
+url=' '${host}/${controller}/${action}' '
+
+# 完整的请求命令
+cmd=${cmd_head}\'${json}\'${url}
+
+# 向屏幕输出命令内容
+echo -e "\n"
+echo $cmd
+
+# 执行命令，并把结果保存到输出文件
+echo -e "\n"
+eval $cmd > ${put_out} 
+echo -e "\n"
+
+# 向屏幕输出结果文件里面的内容
+echo -e "\n"
+cat ${put_out}
+echo -e "\n"

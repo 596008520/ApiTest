@@ -1,0 +1,21 @@
+#!/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+# cmd=" curl http://cloudapi.yimii.me/api/Printtask/status/app_id/45998196061455024909174081451545/access_token/cc842832d885c2d083f5e85a1559bf16/time_stamp/1544775482/cus_orderid/1122111111111113/sign/3b0e4d61d8feaa571994eb79326cb52d &"
+cmd="ab -c 450 -n 450 http://ab.yimii.me:83/index.php/Hello/index ;"
+
+date +%s.%N
+exec_cmd=''
+for((i=0;i<50;i++))
+do
+{
+	exec_cmd=${exec_cmd}${cmd}	
+}
+done
+
+echo "\n"
+date +%s.%N
+eval $exec_cmd
+echo "\n"
+date +%s.%N
